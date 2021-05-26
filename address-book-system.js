@@ -267,3 +267,26 @@ function editField(firstName, lastName, fieldName, updateField) {
     console.error(e);
   }
 }
+
+// UC6 Delete the contact by person name
+try {
+  console.log("Deleting a contact...!!!");
+  deleteField("Ankit", "Gupta");
+} catch (error) {
+  console.error(error);
+}
+function deleteField(firstName, lastName) {
+  try {
+    let contactIndex = addressBookArray.findIndex(
+      (contact) =>
+        contact._firstName == firstName && contact._lastName == lastName
+    );
+    if (contactIndex != -1) {
+      addressBookArray.splice(contactIndex, 1);
+      console.log("ADDRESS BOOK ARRAY AFTER DELETE CONTACT:- ");
+      addressBookArray.forEach((contact) => console.log(contact.toString()));
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
