@@ -401,3 +401,50 @@ try {
 } catch (error) {
   console.error(error);
 }
+
+//UC9 : View All Contacts Grouped by City or State
+try {
+  viewContacts("state");
+  viewContacts("city");
+} catch (error) {
+  console.error(error);
+}
+function viewContacts(field) {
+  let fieldToContactMap = new Map();
+  switch (field) {
+    case "city":
+      fieldToContactMap = viewByCity();
+      console.log("ALL CONTACTS BY CITY : ");
+      console.log(fieldToContactMap);
+      break;
+    case "state":
+      fieldToContactMap = viewByState();
+      console.log("ALL CONTACTS BY STATE : ");
+      console.log(fieldToContactMap);
+      break;
+    default:
+      throw "View Field : " + field + " is Invalid!";
+  }
+}
+function viewByCity() {
+  let cityToContactMap = new Map();
+  addressBookArray.forEach((contact) => {
+    if (cityToContactMap.has(contact.city)) {
+      cityToContactMap.get(contact.city).push(contact);
+    } else {
+      cityToContactMap.set(contact.city, [contact]);
+    }
+  });
+  return cityToContactMap;
+}
+function viewByState() {
+  let stateToContactMap = new Map();
+  addressBookArray.forEach((contact) => {
+    if (stateToContactMap.has(contact.state)) {
+      stateToContactMap.get(contact.state).push(contact);
+    } else {
+      stateToContactMap.set(contact.state, [contact]);
+    }
+  });
+  return stateToContactMap;
+}
