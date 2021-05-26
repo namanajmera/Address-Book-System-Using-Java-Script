@@ -268,7 +268,7 @@ function editField(firstName, lastName, fieldName, updateField) {
   }
 }
 
-// UC6 Delete the contact by person name
+// UC5 Delete the contact by person name
 try {
   console.log("Deleting a contact...!!!");
   deleteField("Ankit", "Gupta");
@@ -291,7 +291,7 @@ function deleteField(firstName, lastName) {
   }
 }
 
-// UC7 Find the total number of contact using reduce medtod
+// UC6 Find the total number of contact using reduce medtod
 
 function totalCounts(current) {
   return current + 1;
@@ -299,3 +299,57 @@ function totalCounts(current) {
 
 let totalContact = addressBookArray.reduce(totalCounts, 0);
 console.log("Total number of contact are:- " + totalContact);
+
+// UC7 Ensure that no duplicate contact
+
+function addContact(contactToAdd) {
+  let alreadyExistContact = isExists(
+    contactToAdd.firstName,
+    contactToAdd.lastName
+  );
+  if (!alreadyExistContact) {
+    addressBookArray.push(contactToAdd);
+    console.log(
+      "Contact with " + contactToAdd.firstName + " is added successfully...!!!!"
+    );
+  } else
+    throw "Contact with " + contactToAdd.firstName + " is already exist..!!!";
+}
+
+function isExists(firstName, lastName) {
+  return addressBookArray.find(
+    (contact) => contact.firstName == firstName && contact.lastName == lastName
+  );
+}
+
+let newContact = new Contact(
+  "Naman",
+  "Ajmera",
+  "Chaksu",
+  "Jaipur",
+  "Rajasthan",
+  303901,
+  8696696426,
+  "cool.naman.ajmera@gmail.com"
+);
+let newContact1 = new Contact(
+  "Arpit",
+  "Ajmera",
+  "Chaksu",
+  "Jaipur",
+  "Rajasthan",
+  303901,
+  8576894031,
+  "arpit.ajmera@gmail.com"
+);
+try {
+  addContact(newContact);
+} catch (error) {
+  console.error(error);
+}
+
+try {
+  addContact(newContact1);
+} catch (error) {
+  console.error(error);
+}
