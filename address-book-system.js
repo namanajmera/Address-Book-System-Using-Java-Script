@@ -184,3 +184,24 @@ console.log(contact.toString());
 
   console.log("\n Contact After setting Feilds:- \n" + contact.toString());
 }
+
+// UC3- Create a new Address Book Array
+{
+  let addressBookArray = new Array();
+  addressBookArray.push(contact);
+  var contact1 = new Contact(
+    "Ankit",
+    "Gupta",
+    "Sanganer",
+    "Jaipur",
+    "Rajasthan",
+    302029,
+    8239234444,
+    "ankit.gupta@gmail.com"
+  );
+  addressBookArray.push(contact1);
+
+  //   Printing the array
+  console.log("ADDRESS BOOK ARRAY: ");
+  addressBookArray.forEach((contact) => console.log(contact.toString()));
+}
