@@ -290,3 +290,12 @@ function deleteField(firstName, lastName) {
     console.error(error);
   }
 }
+
+// UC7 Find the total number of contact using reduce medtod
+
+function totalCounts(current) {
+  return current + 1;
+}
+
+let totalContact = addressBookArray.reduce(totalCounts, 0);
+console.log("Total number of contact are:- " + totalContact);
