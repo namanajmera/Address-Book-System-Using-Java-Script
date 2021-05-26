@@ -353,3 +353,51 @@ try {
 } catch (error) {
   console.error(error);
 }
+
+// UC8-Ability to search Person in a particular City or State
+
+function searchContact(field, fieldName) {
+  switch (field) {
+    case "city":
+      console.log("All Names of " + field + " " + fieldName + " are:- ");
+      searchByCity(fieldName);
+      break;
+    case "state":
+      console.log("All Names of " + field + " " + fieldName + " are:- ");
+      searchByState(fieldName);
+      break;
+    default:
+      console.log("You entered wrong choice...!!!");
+      break;
+  }
+}
+
+function searchByCity(cityName) {
+  addressBookArray
+    .filter((contact) => contact.city == cityName)
+    .forEach((contact) =>
+      console.log(contact.firstName + " " + contact.lastName)
+    );
+}
+
+function searchByState(stateName) {
+  addressBookArray
+    .filter((contact) => contact.state == stateName)
+    .forEach((contact) =>
+      console.log(contact.firstName + " " + contact.lastName)
+    );
+}
+
+console.log();
+try {
+  searchContact("state", "Rajasthan");
+} catch (error) {
+  console.error(error);
+}
+
+console.log();
+try {
+  searchContact("city", "Jaipur");
+} catch (error) {
+  console.error(error);
+}
