@@ -475,9 +475,12 @@ function countContacts(field) {
   }
 }
 
-//UC11 : Sort Entries By Name
+//UC11&12 : Sort Entries By Name, City, State and Zip
 try {
   sortAddressBook("name");
+  sortAddressBook("city");
+  sortAddressBook("state");
+  sortAddressBook("zip");
 } catch (error) {
   console.error(error);
 }
@@ -490,6 +493,27 @@ function sortAddressBook(field) {
         process.stdout.write(contact.toString())
       );
       break;
+    case "city":
+      console.log("ADDRESS BOOK SORTED BY CITY : ");
+      addressBookArray = addressBookArray.sort(compareByCity);
+      addressBookArray.forEach((contact) =>
+        process.stdout.write(contact.toString())
+      );
+      break;
+    case "state":
+      console.log("ADDRESS BOOK SORTED BY STATE : ");
+      addressBookArray = addressBookArray.sort(compareByState);
+      addressBookArray.forEach((contact) =>
+        process.stdout.write(contact.toString())
+      );
+      break;
+    case "zip":
+      console.log("ADDRESS BOOK SORTED BY ZIP : ");
+      addressBookArray = addressBookArray.sort(compareByZip);
+      addressBookArray.forEach((contact) =>
+        process.stdout.write(contact.toString())
+      );
+      break;
     default:
       throw "Sort Field : " + field + " is Invalid!";
   }
@@ -497,5 +521,20 @@ function sortAddressBook(field) {
 function compareByName(a, b) {
   if (a.firstName + a.lastName > b.firstName + b.lastName) return 1;
   else if (a.firstName + a.lastName < b.firstName + b.lastName) return -1;
+  else return 0;
+}
+function compareByCity(a, b) {
+  if (a.city > b.city) return 1;
+  else if (a.city < b.city) return -1;
+  else return 0;
+}
+function compareByState(a, b) {
+  if (a.state > b.state) return 1;
+  else if (a.state < b.state) return -1;
+  else return 0;
+}
+function compareByZip(a, b) {
+  if (a.zip > b.zip) return 1;
+  else if (a.zip < b.zip) return -1;
   else return 0;
 }
