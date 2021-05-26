@@ -140,68 +140,130 @@ let contact = new Contact(
 console.log(contact.toString());
 
 // UC2: Checking the Valid and Invalid Inputs
-{
-  try {
-    contact.firstName = "Jo";
-  } catch (error) {
-    console.error(error);
-  }
-  try {
-    contact.lastName = "Jo";
-  } catch (error) {
-    console.error(error);
-  }
-  try {
-    contact.address = "Hom";
-  } catch (error) {
-    console.error(error);
-  }
-  try {
-    contact.city = "Jai";
-  } catch (error) {
-    console.error(error);
-  }
-  try {
-    contact.state = "Raj";
-  } catch (error) {
-    console.error(error);
-  }
-  try {
-    contact.zip = 3039011;
-  } catch (error) {
-    console.error(error);
-  }
-  try {
-    contact.phoneNumber = 8696696426;
-  } catch (error) {
-    console.error(error);
-  }
-  try {
-    contact.email = "cool.naman@@gmail.com";
-  } catch (error) {
-    console.error(error);
-  }
 
-  console.log("\n Contact After setting Feilds:- \n" + contact.toString());
+try {
+  contact.firstName = "Jo";
+} catch (error) {
+  console.error(error);
+}
+try {
+  contact.lastName = "Jo";
+} catch (error) {
+  console.error(error);
+}
+try {
+  contact.address = "Hom";
+} catch (error) {
+  console.error(error);
+}
+try {
+  contact.city = "Jai";
+} catch (error) {
+  console.error(error);
+}
+try {
+  contact.state = "Raj";
+} catch (error) {
+  console.error(error);
+}
+try {
+  contact.zip = 3039011;
+} catch (error) {
+  console.error(error);
+}
+try {
+  contact.phoneNumber = 8696696426;
+} catch (error) {
+  console.error(error);
+}
+try {
+  contact.email = "cool.naman@@gmail.com";
+} catch (error) {
+  console.error(error);
 }
 
-// UC3- Create a new Address Book Array
-{
-  let addressBookArray = new Array();
-  addressBookArray.push(contact);
-  var contact1 = new Contact(
-    "Ankit",
-    "Gupta",
-    "Sanganer",
-    "Jaipur",
-    "Rajasthan",
-    302029,
-    8239234444,
-    "ankit.gupta@gmail.com"
-  );
-  addressBookArray.push(contact1);
+console.log("\n Contact After setting Feilds:- \n" + contact.toString());
 
-  //   Printing the array
-  console.log("ADDRESS BOOK ARRAY: ");
-  addressBookArray.forEach((contact) => console.log(contact.toString()));
+// UC3- Create a new Address Book Array
+
+let addressBookArray = new Array();
+addressBookArray.push(contact);
+var contact1 = new Contact(
+  "Ankit",
+  "Gupta",
+  "Sanganer",
+  "Jaipur",
+  "Rajasthan",
+  302029,
+  8239234444,
+  "ankit.gupta@gmail.com"
+);
+addressBookArray.push(contact1);
+
+//   Printing the array
+console.log("ADDRESS BOOK ARRAY: ");
+addressBookArray.forEach((contact) => console.log(contact.toString()));
+
+// UC4 Find Exising contact  person using their name and edit it.
+
+try {
+  editField("Naman", "Ajmera", "address", "Sanganer");
+} catch (error) {
+  console.log(error);
+}
+
+function findContact(firstName, lastName) {
+  let contact = addressBookArray.find(
+    (contact) =>
+      contact._firstName == firstName && contact._lastName == lastName
+  );
+  if (contact != undefined) {
+    return contact;
+  } else
+    throw (
+      "\n Contact : " +
+      firstName +
+      " " +
+      lastName +
+      " doesn't exit in your Address Book Array."
+    );
+}
+
+function editField(firstName, lastName, fieldName, updateField) {
+  try {
+    let contact = findContact(firstName, lastName);
+    switch (fieldName) {
+      case "firstName":
+        contact._firstName = updateField;
+        break;
+      case "lastName":
+        contact._lastName = updateField;
+        break;
+      case "address":
+        contact._address = updateField;
+        break;
+      case "city":
+        contact._city = updateField;
+        break;
+      case "state":
+        contact._state = updateField;
+        break;
+      case "zip":
+        contact._zip = updateField;
+        break;
+      case "phoneNumber":
+        contact._phoneNumber = updateField;
+        break;
+      case "email":
+        contact._email = updateField;
+        break;
+
+      default:
+        throw "Feild for Updation : " + fieldName + " is Invalid";
+    }
+    console.log("ADDRESS BOOK ARRAY AFTER UPDATING CONTACT");
+    addressBookArray.forEach((contact) => console.log(contact.toString()));
+  } catch (e) {
+    console.error(e);
+  }
 }
